@@ -23,12 +23,12 @@ import Cartography
 
 
 @objc public protocol AudioEffectsPickerDelegate: NSObjectProtocol {
-    func audioEffectsPickerDidPickEffect(picker: AudioEffectsPickerViewController, effect: AVSAudioEffectType, resultFilePath: String)
+    func audioEffectsPickerDidPickEffect(picker: AudioEffectsPickerViewController, effect: AVSAudioEffectType, resultFilePath: String?)
 }
 
 @objc public final class AudioEffectsPickerViewController: UIViewController {
     
-    public let recordingPath: String
+    public let recordingPath: String?
     private let duration: NSTimeInterval
     public weak var delegate: AudioEffectsPickerDelegate?
     
@@ -56,6 +56,11 @@ import Cartography
     
     internal var selectedAudioEffect: AVSAudioEffectType = .None {
         didSet {
+            guard let recordingPath = self.recordingPath else {
+                self.delegate?.audioEffectsPickerDidPickEffect(self, effect: selectedAudioEffect, resultFilePath: .None)
+                return
+            }
+            
             if self.selectedAudioEffect == .Reverse {
                 self.progressView.samples = self.normalizedLoudness.reverse()
             }
@@ -84,14 +89,14 @@ import Cartography
                 
                 let effectPath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("effect.wav")
                 effectPath.deleteFileAtPath()
-                self.selectedAudioEffect.apply(self.recordingPath, outPath: effectPath) {
+                self.selectedAudioEffect.apply(recordingPath, outPath: effectPath) {
                     self.delegate?.audioEffectsPickerDidPickEffect(self, effect: self.selectedAudioEffect, resultFilePath: effectPath)
                     
                     self.playMedia(effectPath)
                 }
             }
             else {
-                self.playMedia(self.recordingPath)
+                self.playMedia(recordingPath)
             }
         }
     }
@@ -111,6 +116,12 @@ import Cartography
     public init(recordingPath: String, duration: NSTimeInterval) {
         self.duration = duration
         self.recordingPath = recordingPath
+        super.init(nibName: .None, bundle: .None)
+    }
+    
+    public init() {
+        self.duration = 0
+        self.recordingPath = .None
         super.init(nibName: .None, bundle: .None)
     }
     
@@ -173,6 +184,10 @@ import Cartography
     }
     
     private func loadLevels() {
+        guard let recordingPath = self.recordingPath else {
+            return
+        }
+        
         let url = NSURL(fileURLWithPath: recordingPath)
         FileMetaDataGenerator.metadataForFileAtURL(url, UTI: url.UTI()) { metadata in
             dispatch_async(dispatch_get_main_queue(), {

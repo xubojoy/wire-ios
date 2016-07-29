@@ -443,7 +443,10 @@ import CocoaLumberjackSwift
 }
 
 extension AudioRecordKeyboardViewController: AudioEffectsPickerDelegate {
-    public func audioEffectsPickerDidPickEffect(picker: AudioEffectsPickerViewController, effect: AVSAudioEffectType, resultFilePath: String) {
+    public func audioEffectsPickerDidPickEffect(picker: AudioEffectsPickerViewController, effect: AVSAudioEffectType, resultFilePath: String?) {
+        guard let resultFilePath = resultFilePath else {
+            return
+        }
         self.currentEffectFilePath = resultFilePath
         self.currentEffect = effect
     }

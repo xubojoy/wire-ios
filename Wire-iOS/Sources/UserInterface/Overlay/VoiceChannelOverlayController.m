@@ -53,8 +53,13 @@
 @property (nonatomic) BOOL videoLetterboxed;
 
 @property (nonatomic) BOOL cameraSwitchInProgress;
+
+@property (nonatomic) AudioEffectsPickerViewController *effectsPickerController;
 @end
 
+
+@interface VoiceChannelOverlayController (EffectsPickerDelegate) <AudioEffectsPickerDelegate>
+@end
 
 
 @implementation VoiceChannelOverlayController
@@ -106,8 +111,16 @@
     self.blurEffectView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.blurEffectView.contentView addSubview:overlayView];
     
-    [self.overlayView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-
+    [self createEffectsPicker];
+    [self.effectsPickerController willMoveToParentViewController:self];
+    [self.blurEffectView addSubview:self.effectsPickerController.view];
+    [self addChildViewController:self.effectsPickerController];
+    
+    [self.overlayView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
+    [self.effectsPickerController.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 32, 20, 32) excludingEdge:ALEdgeTop];
+    [self.effectsPickerController.view autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.overlayView];
+    [self.effectsPickerController.view autoSetDimension:ALDimensionHeight toSize:150];
+    
     self.view = self.blurEffectView;
 }
 
@@ -142,6 +155,13 @@
     [self.view addGestureRecognizer:doubleTapGestureRecognizer];
     
     [self updateVoiceChannelOverlayStateWithChangeInfo:nil];
+}
+
+- (void)createEffectsPicker
+{
+    self.effectsPickerController = [[AudioEffectsPickerViewController alloc] init];
+    self.effectsPickerController.delegate = self;
+    self.effectsPickerController.view.translatesAutoresizingMaskIntoConstraints = false;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -516,6 +536,14 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
+}
+
+@end
+
+@implementation VoiceChannelOverlayController (EffectsPickerDelegate)
+
+- (void)audioEffectsPickerDidPickEffect:(AudioEffectsPickerViewController *)picker effect:(AVSAudioEffectType)effect resultFilePath:(NSString *)resultFilePath {
+    [[[AVSProvider shared] flowManager] setAudioEffect:effect];
 }
 
 @end
