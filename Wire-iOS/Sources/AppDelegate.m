@@ -71,9 +71,6 @@
 
 @property (nonatomic, assign, readwrite) ApplicationLaunchType launchType;
 
-/// This BOOL will be set to YES in case the app got launched via the @c applicationDidBecomeActive: method
-@property (nonatomic, assign) BOOL addressBookUploadShouldBeChecked;
-
 @property (nonatomic, copy) NSDictionary *launchOptions;
 
 @end
@@ -163,7 +160,13 @@
     
     [self.appController applicationDidBecomeActive:application];
     
-    self.addressBookUploadShouldBeChecked = YES;
+    [[self zetaUserSession] checkIfLoggedInWithCallback:^(BOOL isLoggedIn) {
+        if (isLoggedIn) {
+            [AddressBookHelper.sharedHelper startRemoteSearchWithCheckingIfEnoughTimeSinceLast:YES];
+        }
+    }];
+    
+    [self didChangeAvailability:nil];
     
     // Resume any analytics work after migration
     [[Analytics shared] resume];
@@ -198,10 +201,7 @@
     DDLogInfo(@"applicationDidEnterBackground:  (applicationState = %ld)", (long)application.applicationState);
     
     [[Analytics shared] closeAndUpload];
-    
     self.launchType = ApplicationLaunchUnknown;
-    self.addressBookUploadShouldBeChecked = NO;
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -419,14 +419,6 @@
 
 - (void)didChangeAvailability:(ZMNetworkAvailabilityChangeNotification *)note
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[self zetaUserSession] checkIfLoggedInWithCallback:^(BOOL isLoggedIn) {
-            if (note.networkState == ZMNetworkStateOnline && isLoggedIn && self.addressBookUploadShouldBeChecked) {
-                self.addressBookUploadShouldBeChecked = NO;
-                [AddressBookHelper.sharedHelper startRemoteSearchWithCheckingIfEnoughTimeSinceLast:YES];
-            }
-        }];
-    });
 }
 
 @end
