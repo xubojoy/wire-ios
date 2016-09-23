@@ -18,6 +18,8 @@
 
 
 import Foundation
+import MessageUI
+
 
 @objc class SettingsCellDescriptorFactory: NSObject {
     static let settingsDevicesCellIdentifier: String = "devices"
@@ -365,20 +367,7 @@ import Foundation
         return SettingsGroupCellDescriptor(items: [sendUsageSection, troubleshootingSection, pushSection], title: "self.settings.advanced.title".localized, icon: .settingsAdvanced)
     }
     
-    func developerGroup() -> SettingsCellDescriptorType {
-        let title = "self.settings.developer_options.title".localized
-        
-        let devController = SettingsExternalScreenCellDescriptor(title: "Logging") { () -> (UIViewController?) in
-            return DevOptionsController()
-        }
-        
-        let diableAVSSetting = SettingsPropertyToggleCellDescriptor(settingsProperty: self.settingsPropertyFactory.property(.DisableAVS))
-        let diableUISetting = SettingsPropertyToggleCellDescriptor(settingsProperty: self.settingsPropertyFactory.property(.DisableUI))
-        let diableHockeySetting = SettingsPropertyToggleCellDescriptor(settingsProperty: self.settingsPropertyFactory.property(.DisableHockey))
-        let diableAnalyticsSetting = SettingsPropertyToggleCellDescriptor(settingsProperty: self.settingsPropertyFactory.property(.DisableAnalytics))
-        
-        return SettingsGroupCellDescriptor(items: [SettingsSectionDescriptor(cellDescriptors: [devController, diableAVSSetting, diableUISetting, diableHockeySetting, diableAnalyticsSetting])], title: title, icon: .effectRobot)
-    }
+    
     
     func helpSection() -> SettingsCellDescriptorType {
         
