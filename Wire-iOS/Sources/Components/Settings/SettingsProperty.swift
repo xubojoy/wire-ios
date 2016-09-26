@@ -101,11 +101,11 @@ enum SettingsPropertyValue: Equatable {
     func value() -> Any? {
         switch (self) {
         case .number(let value):
-            return value as AnyObject?
+            return value
         case .string(let value):
-            return value as AnyObject?
+            return value
         case .bool(let value):
-            return value as AnyObject?
+            return value
         case .none:
             return .none
         }
