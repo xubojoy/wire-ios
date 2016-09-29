@@ -25,7 +25,8 @@ extension AVSMediaManager {
                                                               analytics: Analytics.shared(),
                                                               mediaManager: AVSProvider.shared.mediaManager,
                                                               userSession: ZMUserSession.shared(),
-                                                              selfUser: ZMUser.selfUser())
+                                                              selfUser: ZMUser.selfUser(),
+                                                              hockeyManager: BITHockeyManager.shared())
         return settingsPropertyFactory
     }
     
