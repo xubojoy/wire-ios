@@ -56,11 +56,11 @@ enum SettingsPropertyError: Error {
     case WrongValue(String)
 }
 
-protocol HockeyManager {
+protocol CrashlogManager {
    var isCrashManagerDisabled: Bool { get set }
 }
 
-extension BITHockeyManager: HockeyManager {
+extension BITHockeyManager: CrashlogManager {
 }
 
 class SettingsPropertyFactory {
@@ -69,7 +69,7 @@ class SettingsPropertyFactory {
     var mediaManager: AVSMediaManagerInterface?
     var userSession: ZMUserSessionInterface
     let selfUser: SettingsSelfUser
-    var hockeyManager: HockeyManager?
+    var crashlogManager: CrashlogManager?
     
     static let userDefaultsPropertiesToKeys: [SettingsPropertyName: String] = [
         SettingsPropertyName.Markdown                   : UserDefaultMarkdown,
@@ -84,13 +84,13 @@ class SettingsPropertyFactory {
         SettingsPropertyName.DisableAnalytics           : UserDefaultDisableAnalytics,
     ]
     
-    init(userDefaults: UserDefaults, analytics: AnalyticsInterface?, mediaManager: AVSMediaManagerInterface?, userSession: ZMUserSessionInterface, selfUser: SettingsSelfUser, hockeyManager: HockeyManager? = .none) {
+    init(userDefaults: UserDefaults, analytics: AnalyticsInterface?, mediaManager: AVSMediaManagerInterface?, userSession: ZMUserSessionInterface, selfUser: SettingsSelfUser, crashlogManager: CrashlogManager? = .none) {
         self.userDefaults = userDefaults
         self.analytics = analytics
         self.mediaManager = mediaManager
         self.userSession = userSession
         self.selfUser = selfUser
-        self.hockeyManager = hockeyManager
+        self.crashlogManager = crashlogManager
     }
     
     func property(_ propertyName: SettingsPropertyName) -> SettingsProperty {
@@ -185,14 +185,14 @@ class SettingsPropertyFactory {
             }
             let setAction : SetAction = { (property: SettingsBlockProperty, value: SettingsPropertyValue) throws -> () in
                 if var analytics = self.analytics,
-                    var hockeyManager = self.hockeyManager {
+                    var crashlogManager = self.crashlogManager {
                     switch(value) {
                     case .number(let intValue):
                         analytics.isOptedOut = Bool(intValue)
-                        hockeyManager.isCrashManagerDisabled = Bool(intValue)
+                        crashlogManager.isCrashManagerDisabled = Bool(intValue)
                     case .bool(let boolValue):
                         analytics.isOptedOut = boolValue
-                        hockeyManager.isCrashManagerDisabled = boolValue
+                        crashlogManager.isCrashManagerDisabled = boolValue
                     default:
                         throw SettingsPropertyError.WrongValue("Incorrect type \(value) for key \(propertyName)")
                     }
