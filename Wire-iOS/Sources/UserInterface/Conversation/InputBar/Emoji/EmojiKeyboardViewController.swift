@@ -55,6 +55,7 @@ protocol EmojiKeyboardViewControllerDelegate: class {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateSectionSelection()
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
     }
     
     func setupViews() {
@@ -189,7 +190,8 @@ class EmojiCollectionViewCell: UICollectionViewCell {
     
     func setupViews() {
         titleLabel.textAlignment = .center
-        titleLabel.font = .systemFont(ofSize: 28)
+        let fontSize: CGFloat =  UIDevice.current.userInterfaceIdiom == .pad ? 40 : 28
+        titleLabel.font = .systemFont(ofSize: fontSize)
         titleLabel.adjustsFontSizeToFitWidth = true
         addSubview(titleLabel)
     }

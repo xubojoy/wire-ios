@@ -55,6 +55,7 @@
 #import "UIView+WR_ExtendedBlockAnimations.h"
 #import "UIView+Borders.h"
 #import "ImageMessageCell.h"
+#import "WAZUIMagic.h"
 
 
 @interface ConversationInputBarViewController (Commands)
@@ -343,8 +344,10 @@
     self.sendButton.cas_styleClass = @"send-button";
 
     [self.inputBar.rightAccessoryView addSubview:self.sendButton];
-    [self.sendButton autoSetDimensionsToSize:CGSizeMake(28, 28)];
-    [self.sendButton autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(14, 0, 0, 0) excludingEdge:ALEdgeBottom];
+    CGFloat edgeLength = 28;
+    [self.sendButton autoSetDimensionsToSize:CGSizeMake(edgeLength, edgeLength)];
+    CGFloat rightInset = ([WAZUIMagic cgFloatForIdentifier:@"content.left_margin"] - edgeLength) / 2;
+    [self.sendButton autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(14, 0, 0, rightInset) excludingEdge:ALEdgeBottom];
 }
 
 - (void)createVerifiedView
@@ -533,7 +536,7 @@
 - (void)clearTextInputAssistentItemIfNeeded
 {
     if (nil != [UITextInputAssistantItem class]) {
-        UITextInputAssistantItem* item = self.inputBar.textView.inputAssistantItem;
+        UITextInputAssistantItem *item = self.inputBar.textView.inputAssistantItem;
         item.leadingBarButtonGroups = @[];
         item.trailingBarButtonGroups = @[];
     }
