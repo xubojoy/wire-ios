@@ -408,9 +408,11 @@
 
 - (void)updateRightAccessoryView
 {
-    const NSUInteger textLength = self.inputBar.textView.text.length;
+    NSString *trimmed = [self.inputBar.textView.text stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+    const NSUInteger textLength = trimmed.length;
     BOOL hideSendButton = Settings.sharedSettings.disableSendButton && self.mode != ConversationInputBarViewControllerModeEmojiInput;
-    self.sendButton.hidden = textLength == 0 || hideSendButton;
+    BOOL editing = nil != self.editingMessage;
+    self.sendButton.hidden = textLength == 0 || hideSendButton || editing;
 
     self.verifiedShieldButton.hidden = self.conversation.securityLevel != ZMConversationSecurityLevelSecure || textLength > 0;
 }
@@ -449,7 +451,7 @@
 
 - (void)onSingleTap:(UITapGestureRecognizer *)recognier
 {
-    if (recognier.state == UIGestureRecognizerStateRecognized) {
+    if (recognier.state == UIGestureRecognizerStateRecognized && self.mode != ConversationInputBarViewControllerModeEmojiInput) {
         self.mode = ConversationInputBarViewControllerModeTextInput;
     }
 }

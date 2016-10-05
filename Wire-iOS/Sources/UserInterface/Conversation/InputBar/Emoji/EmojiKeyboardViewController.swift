@@ -52,10 +52,14 @@ protocol EmojiKeyboardViewControllerDelegate: class {
         createConstraints()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateSectionSelection()
-        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
     }
     
     func setupViews() {
