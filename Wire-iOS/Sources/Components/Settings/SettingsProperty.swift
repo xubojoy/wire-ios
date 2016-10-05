@@ -29,43 +29,45 @@ Available settings
 - PriofileName:           User name
 - SoundAlerts:            Sound alerts level
 - AnalyticsOptOut:        Opt-Out analytics
+- DisableSendButton:      Opt-Out of new send button
 - Disable(.*):            Disable some app features (debug)
 */
 enum SettingsPropertyName: String, CustomStringConvertible {
     
     // User defaults
-    case ChatHeadsDisabled = "ChatHeadsDisabled"
-    case NotificationContentVisible = "NotificationContentVisible"
-    case Markdown = "Markdown"
+    case chatHeadsDisabled = "ChatHeadsDisabled"
+    case notificationContentVisible = "NotificationContentVisible"
+    case markdown = "Markdown"
     
-    case SkipFirstTimeUseChecks = "SkipFirstTimeUseChecks"
+    case skipFirstTimeUseChecks = "SkipFirstTimeUseChecks"
     
-    case PreferredFlashMode = "PreferredFlashMode"
+    case preferredFlashMode = "PreferredFlashMode"
     
-    case DarkMode = "DarkMode"
+    case darkMode = "DarkMode"
+    
+    case disableSendButton = "DisableSendButton"
     
     // Profile
-    case ProfileName = "ProfileName"
-    case AccentColor = "AccentColor"
+    case profileName = "ProfileName"
+    case accentColor = "AccentColor"
     
     // AVS
-    case SoundAlerts = "SoundAlerts"
+    case soundAlerts = "SoundAlerts"
     
     // Analytics
-    case AnalyticsOptOut = "AnalyticsOptOut"
+    case analyticsOptOut = "AnalyticsOptOut"
 
     // Sounds
-    
-    case MessageSoundName = "MessageSoundName"
-    case CallSoundName = "CallSoundName"
-    case PingSoundName = "PingSoundName"
+    case messageSoundName = "MessageSoundName"
+    case callSoundName = "CallSoundName"
+    case pingSoundName = "PingSoundName"
     
     // Debug
     
-    case DisableUI = "DisableUI"
-    case DisableAVS = "DisableAVS"
-    case DisableHockey = "DisableHockey"
-    case DisableAnalytics = "DisableAnalytics"
+    case disableUI = "DisableUI"
+    case disableAVS = "DisableAVS"
+    case disableHockey = "DisableHockey"
+    case disableAnalytics = "DisableAnalytics"
 
     var changeNotificationName: String {
         return self.description + "ChangeNotification"
@@ -138,7 +140,14 @@ extension Bool {
  */
 protocol SettingsProperty {
     var propertyName : SettingsPropertyName { get }
-    var propertyValue : SettingsPropertyValue { get set }
+    func value() -> SettingsPropertyValue
+    func set(newValue: SettingsPropertyValue) throws
+}
+
+extension SettingsProperty {
+    internal func rawValue() -> Any? {
+        return self.value().value()
+    }
 }
 
 /**
@@ -147,10 +156,10 @@ protocol SettingsProperty {
  - parameter property: Property to set the value on
  - parameter expr:     Property value (raw)
  */
-func << (property: inout SettingsProperty, expr: @autoclosure () -> Any) {
+func << (property: inout SettingsProperty, expr: @autoclosure () -> Any) throws {
     let value = expr()
     
-    property.propertyValue = SettingsPropertyValue.propertyValue(value)
+    try property.set(newValue: SettingsPropertyValue.propertyValue(value))
 }
 
 /**
@@ -159,10 +168,10 @@ func << (property: inout SettingsProperty, expr: @autoclosure () -> Any) {
  - parameter property: Property to set the value on
  - parameter expr:     Property value
  */
-func << (property: inout SettingsProperty, expr: @autoclosure () -> SettingsPropertyValue) {
+func << (property: inout SettingsProperty, expr: @autoclosure () -> SettingsPropertyValue) throws {
     let value = expr()
     
-    property.propertyValue = value
+    try property.set(newValue: value)
 }
 
 /**
@@ -172,31 +181,32 @@ func << (property: inout SettingsProperty, expr: @autoclosure () -> SettingsProp
  - parameter property: Property to read the value from
  */
 func << (value: inout Any?, property: SettingsProperty) {
-    value = property.propertyValue.value()
+    value = property.rawValue()
 }
 
 /// Generic user defaults property
 class SettingsUserDefaultsProperty : SettingsProperty {
-    let propertyName : SettingsPropertyName
-    let userDefaults : UserDefaults
-    var propertyValue : SettingsPropertyValue {
-        set (newValue) {
-            self.userDefaults.set(newValue.value(), forKey: self.userDefaultsKey)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: self.propertyName.changeNotificationName), object: self)
+    internal func set(newValue: SettingsPropertyValue) throws {
+        self.userDefaults.set(newValue.value(), forKey: self.userDefaultsKey)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: self.propertyName.changeNotificationName), object: self)
+    }
+    
+    internal func value() -> SettingsPropertyValue {
+        let value : AnyObject? = self.userDefaults.object(forKey: self.userDefaultsKey) as AnyObject?
+        if let numberValue : NSNumber = value as? NSNumber {
+            return SettingsPropertyValue.propertyValue(numberValue.intValue as AnyObject?)
         }
-        get {
-            let value : AnyObject? = self.userDefaults.object(forKey: self.userDefaultsKey) as AnyObject?
-            if let numberValue : NSNumber = value as? NSNumber {
-                return SettingsPropertyValue.propertyValue(numberValue.intValue as AnyObject?)
-            }
-            else if let stringValue : String = value as? String {
-                return SettingsPropertyValue.propertyValue(stringValue as AnyObject?)
-            }
-            else {
-                return .none
-            }
+        else if let stringValue : String = value as? String {
+            return SettingsPropertyValue.propertyValue(stringValue as AnyObject?)
+        }
+        else {
+            return .none
         }
     }
+
+    let propertyName : SettingsPropertyName
+    let userDefaults : UserDefaults
+    
     let userDefaultsKey: String
     
     init(propertyName: SettingsPropertyName, userDefaultsKey: String, userDefaults: UserDefaults) {
@@ -207,20 +217,20 @@ class SettingsUserDefaultsProperty : SettingsProperty {
 }
 
 typealias GetAction = (SettingsBlockProperty) -> SettingsPropertyValue
-typealias SetAction = (SettingsBlockProperty, SettingsPropertyValue) -> ()
+typealias SetAction = (SettingsBlockProperty, SettingsPropertyValue) throws -> ()
 
 /// Genetic block property
 open class SettingsBlockProperty : SettingsProperty {
     let propertyName : SettingsPropertyName
-    var propertyValue : SettingsPropertyValue {
-        set (newValue) {
-            self.setAction(self, newValue)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: self.propertyName.changeNotificationName), object: self)
-        }
-        get {
-            return self.getAction(self)
-        }
+    func value() -> SettingsPropertyValue {
+        return self.getAction(self)
     }
+    
+    func set(newValue: SettingsPropertyValue) throws {
+        try self.setAction(self, newValue)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: self.propertyName.changeNotificationName), object: self)
+    }
+    
     fileprivate let getAction : GetAction
     fileprivate let setAction : SetAction
     

@@ -133,6 +133,11 @@ typedef NS_ENUM(NSInteger, ZetaIconType)
     ZetaIconTypeSettingsSupport                 = 0x127,
     ZetaIconTypeWireLogo                        = 0x202,
 
+    ZetaIconTypeSend                            = 0x235,
+    ZetaIconTypeText                            = 0x236,
+    ZetaIconTypeEmoji                           = 0x237,
+    ZetaIconTypeBackspace                       = 0x238,
+
     ZetaIconTypeEffectBallon                    = 0x240,
     ZetaIconTypeEffectJellyfish                 = 0x242,
     ZetaIconTypeEffectRabbit                    = 0x243,
@@ -140,6 +145,15 @@ typedef NS_ENUM(NSInteger, ZetaIconType)
     ZetaIconTypeEffectAlien                     = 0x245,
     ZetaIconTypeEffectRobot                     = 0x246,
     ZetaIconTypeEffectReverse                   = 0x247,
+
+    // Emoji Categories
+    ZetaIconTypeFlower                          = 0x250,
+    ZetaIconTypeCake                            = 0x251,
+    ZetaIconTypeCar                             = 0x252,
+    ZetaIconTypeBall                            = 0x253,
+    ZetaIconTypeCrown                           = 0x254,
+    ZetaIconTypeAsterisk                        = 0x255,
+    ZetaIconTypeFlag                            = 0x256,
     
 };
 

@@ -20,7 +20,7 @@
 import XCTest
 @testable import Wire
 
-@objc class MockZMEditableUser: NSObject, ZMEditableUser {
+@objc class MockZMEditableUser: NSObject, ZMEditableUser, ValidatorType {
     var name: String! = ""
     var accentColorValue: ZMAccentColor = .undefined
     var emailAddress: String! = ""
@@ -30,6 +30,9 @@ import XCTest
     
     func deleteProfileImage() {
         // no-op
+    }
+    
+    static func validateName(_ ioName: AutoreleasingUnsafeMutablePointer<NSString?>!) throws {
     }
 }
 
@@ -59,10 +62,10 @@ class ZMMockAnalytics: AnalyticsInterface {
 class SettingsPropertyTests: XCTestCase {
     let userDefaults: UserDefaults = UserDefaults.standard
     
-    func saveAndCheck<T: Any>( _ property: SettingsProperty, value: T) -> Bool where T: Equatable {
+    func saveAndCheck<T: Any>( _ property: SettingsProperty, value: T) throws -> Bool where T: Equatable {
         var property = property
-        property << value
-        if let readValue : T = property.propertyValue.value() as? T {
+        try property << value
+        if let readValue : T = property.rawValue() as? T {
             return value == readValue
         }
         else {
@@ -74,16 +77,16 @@ class SettingsPropertyTests: XCTestCase {
     
     func testThatIntegerUserDefaultsSettingSave() {
         // given
-        let property = SettingsUserDefaultsProperty(propertyName: SettingsPropertyName.DarkMode, userDefaultsKey: UserDefaultColorScheme, userDefaults: self.userDefaults)
+        let property = SettingsUserDefaultsProperty(propertyName: SettingsPropertyName.darkMode, userDefaultsKey: UserDefaultColorScheme, userDefaults: self.userDefaults)
         // when & then
-        XCTAssertTrue(self.saveAndCheck(property, value: "dark"))
+        try! XCTAssertTrue(self.saveAndCheck(property, value: "light"))
     }
     
     func testThatBoolUserDefaultsSettingSave() {
         // given
-        let property = SettingsUserDefaultsProperty(propertyName: SettingsPropertyName.ChatHeadsDisabled, userDefaultsKey: UserDefaultChatHeadsDisabled, userDefaults: self.userDefaults)
+        let property = SettingsUserDefaultsProperty(propertyName: SettingsPropertyName.chatHeadsDisabled, userDefaultsKey: UserDefaultChatHeadsDisabled, userDefaults: self.userDefaults)
         // when & then
-        XCTAssertTrue(self.saveAndCheck(property, value: true))
+        try! XCTAssertTrue(self.saveAndCheck(property, value: true))
     }
     
     
@@ -97,9 +100,9 @@ class SettingsPropertyTests: XCTestCase {
         
         let factory = SettingsPropertyFactory(userDefaults: self.userDefaults, analytics: analytics, mediaManager: mediaManager, userSession : userSession, selfUser: selfUser)
         
-        let property = factory.property(SettingsPropertyName.ProfileName)
+        let property = factory.property(SettingsPropertyName.profileName)
         // when & then
-        XCTAssertTrue(self.saveAndCheck(property, value: "Test"))
+        try! XCTAssertTrue(self.saveAndCheck(property, value: "Test"))
     }
     
     func testThatSoundLevelPropertySetsValue() {
@@ -111,9 +114,9 @@ class SettingsPropertyTests: XCTestCase {
 
         let factory = SettingsPropertyFactory(userDefaults: self.userDefaults, analytics: analytics, mediaManager: mediaManager, userSession : userSession, selfUser: selfUser)
         
-        let property = factory.property(SettingsPropertyName.SoundAlerts)
+        let property = factory.property(SettingsPropertyName.soundAlerts)
         // when & then
-        XCTAssertTrue(self.saveAndCheck(property, value: 1))
+        try! XCTAssertTrue(self.saveAndCheck(property, value: 1))
     }
     
     func testThatAnalyticsPropertySetsValue() {
@@ -125,9 +128,9 @@ class SettingsPropertyTests: XCTestCase {
 
         let factory = SettingsPropertyFactory(userDefaults: self.userDefaults, analytics: analytics, mediaManager: mediaManager, userSession : userSession, selfUser: selfUser)
         
-        let property = factory.property(SettingsPropertyName.AnalyticsOptOut)
+        let property = factory.property(SettingsPropertyName.analyticsOptOut)
         // when & then
-        XCTAssertTrue(self.saveAndCheck(property, value: true))
+        try! XCTAssertTrue(self.saveAndCheck(property, value: true))
     }
     
     func testThatIntegerBlockSettingSave() {
@@ -139,9 +142,9 @@ class SettingsPropertyTests: XCTestCase {
 
         let factory = SettingsPropertyFactory(userDefaults: self.userDefaults, analytics: analytics, mediaManager: mediaManager, userSession : userSession, selfUser: selfUser)
 
-        let property = factory.property(SettingsPropertyName.SoundAlerts)
+        let property = factory.property(SettingsPropertyName.soundAlerts)
         // when & then
-        XCTAssertTrue(self.saveAndCheck(property, value: 1))
+        try! XCTAssertTrue(self.saveAndCheck(property, value: 1))
     }
     
 }
