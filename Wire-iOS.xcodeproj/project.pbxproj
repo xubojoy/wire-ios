@@ -544,6 +544,7 @@
 		87AB6DB61D9AB47400ADAD38 /* SettingsStyleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB6DB51D9AB47400ADAD38 /* SettingsStyleNavigationController.swift */; };
 		87AC9F561C0749FB00E1ED6F /* TailEditingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AC9F551C0749FB00E1ED6F /* TailEditingTextField.swift */; };
 		87AD89F71CB5179C002C6EC1 /* FileTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD89F61CB5179C002C6EC1 /* FileTransferCell.swift */; };
+		87ADCE4E1DA68FA400CC06DC /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87ADCE4D1DA68FA400CC06DC /* CallKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		87BEB0361D39018600DE9575 /* FormatterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BEB0351D39018600DE9575 /* FormatterKit.framework */; };
 		87BEB03C1D3E44BA00DE9575 /* CameraKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BEB03B1D3E44BA00DE9575 /* CameraKeyboardViewController.swift */; };
 		87BEB03E1D3E44DE00DE9575 /* CameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BEB03D1D3E44DE00DE9575 /* CameraCell.swift */; };
@@ -614,7 +615,6 @@
 		87F61D1C1CD379EC00670794 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F61D1B1CD379EC00670794 /* CircularProgressView.swift */; };
 		87F6B6361D2E9CF500F057A5 /* EmojiOnlyStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F6B6351D2E9CF500F057A5 /* EmojiOnlyStringTests.swift */; };
 		87F6D1BB1C1590B7000AB4D2 /* RequestPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F6D1BA1C1590B7000AB4D2 /* RequestPasswordViewController.swift */; };
-		87F914091D95BBED00A5E2A5 /* CallKitDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F914081D95BBED00A5E2A5 /* CallKitDelegate.swift */; };
 		87FEE0D01D76D65700265A9C /* VIMNetworkingFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87FEE0CF1D76D65700265A9C /* VIMNetworkingFramework.framework */; };
 		8F0DEDD51A693F58003F0ACC /* PingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0DEDD41A693F58003F0ACC /* PingCell.m */; };
 		8F0EE70A1A667F9A0070E1E8 /* NameChangedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0EE7091A667F9A0070E1E8 /* NameChangedCell.m */; };
@@ -810,6 +810,62 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1EE85C4F1B5F96FB008E084B;
 			remoteInfo = ZetaFramework;
+		};
+		877947A21DA54462009F3271 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8779479C1DA54462009F3271 /* zmessaging-cocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 549815931A43232400A7CE2E;
+			remoteInfo = "zmessaging-ios";
+		};
+		877947A41DA54462009F3271 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8779479C1DA54462009F3271 /* zmessaging-cocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E1860C3191A649D000FE027;
+			remoteInfo = "zmessaging-iOS-Tests";
+		};
+		877947A61DA54462009F3271 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8779479C1DA54462009F3271 /* zmessaging-cocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E186088191A56F6000FE027;
+			remoteInfo = "zmessaging Test Host";
+		};
+		877947AA1DA546B7009F3271 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8779479C1DA54462009F3271 /* zmessaging-cocoa.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 549815921A43232400A7CE2E;
+			remoteInfo = "zmessaging-ios";
+		};
+		87ADCE431DA687B200CC06DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87ADCE3D1DA687B200CC06DC /* ZMCDataModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F9C9A4FC1CAD5DF10039E10C;
+			remoteInfo = ZMCDataModel;
+		};
+		87ADCE451DA687B200CC06DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87ADCE3D1DA687B200CC06DC /* ZMCDataModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F9C9A5061CAD5DF10039E10C;
+			remoteInfo = ZMCDataModelTests;
+		};
+		87ADCE471DA687B200CC06DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87ADCE3D1DA687B200CC06DC /* ZMCDataModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F9C9A7F31CAED9510039E10C;
+			remoteInfo = ZMDataModelTestHost;
+		};
+		87ADCE4B1DA687B700CC06DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87ADCE3D1DA687B200CC06DC /* ZMCDataModel.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F9C9A4FB1CAD5DF10039E10C;
+			remoteInfo = ZMCDataModel;
 		};
 		BACB88571AF7C48900DDCDB0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1617,6 +1673,7 @@
 		8774F0C61B4AB2DD002256A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87775AB21D95138D000CAD4F /* avs-versions */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "avs-versions"; sourceTree = "<group>"; };
 		87775AB31D9513F9000CAD4F /* WireRequestStrategy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WireRequestStrategy.framework; path = Carthage/Build/iOS/WireRequestStrategy.framework; sourceTree = "<group>"; };
+		8779479C1DA54462009F3271 /* zmessaging-cocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "zmessaging-cocoa.xcodeproj"; path = "../wire-ios-sync-engine/zmessaging-cocoa.xcodeproj"; sourceTree = "<group>"; };
 		8784B6251D89448700AB71BD /* ProfileSelfPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSelfPictureViewController.h; sourceTree = "<group>"; };
 		8784B6261D89448700AB71BD /* ProfileSelfPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSelfPictureViewController.m; sourceTree = "<group>"; };
 		8784B6271D89448700AB71BD /* UIAlertController+NewSelfClients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+NewSelfClients.h"; sourceTree = "<group>"; };
@@ -1674,6 +1731,8 @@
 		87AB6DB51D9AB47400ADAD38 /* SettingsStyleNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStyleNavigationController.swift; sourceTree = "<group>"; };
 		87AC9F551C0749FB00E1ED6F /* TailEditingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TailEditingTextField.swift; sourceTree = "<group>"; };
 		87AD89F61CB5179C002C6EC1 /* FileTransferCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTransferCell.swift; sourceTree = "<group>"; };
+		87ADCE3D1DA687B200CC06DC /* ZMCDataModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZMCDataModel.xcodeproj; path = "../wire-ios-data-model/ZMCDataModel.xcodeproj"; sourceTree = "<group>"; };
+		87ADCE4D1DA68FA400CC06DC /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
 		87BEB0351D39018600DE9575 /* FormatterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FormatterKit.framework; path = Carthage/Build/iOS/FormatterKit.framework; sourceTree = "<group>"; };
 		87BEB03B1D3E44BA00DE9575 /* CameraKeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraKeyboardViewController.swift; sourceTree = "<group>"; };
 		87BEB03D1D3E44DE00DE9575 /* CameraCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraCell.swift; sourceTree = "<group>"; };
@@ -1792,7 +1851,6 @@
 		87F61D1B1CD379EC00670794 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		87F6B6351D2E9CF500F057A5 /* EmojiOnlyStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiOnlyStringTests.swift; sourceTree = "<group>"; };
 		87F6D1BA1C1590B7000AB4D2 /* RequestPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPasswordViewController.swift; sourceTree = "<group>"; };
-		87F914081D95BBED00A5E2A5 /* CallKitDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitDelegate.swift; sourceTree = "<group>"; };
 		87FEE0CF1D76D65700265A9C /* VIMNetworkingFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VIMNetworkingFramework.framework; path = Carthage/Build/iOS/VIMNetworkingFramework.framework; sourceTree = "<group>"; };
 		8F0DEDD31A693F58003F0ACC /* PingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingCell.h; sourceTree = "<group>"; };
 		8F0DEDD41A693F58003F0ACC /* PingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingCell.m; sourceTree = "<group>"; };
@@ -2139,6 +2197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87ADCE4E1DA68FA400CC06DC /* CallKit.framework in Frameworks */,
 				874D0EB11D3E575E003DF418 /* Photos.framework in Frameworks */,
 				872786CB1D38EE2000CC3C15 /* OnePasswordExtension.framework in Frameworks */,
 				873478071D34EE5100CB200F /* libstdc++.tbd in Frameworks */,
@@ -2639,6 +2698,7 @@
 		8286E48D7CC440448CBD8F48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87ADCE4D1DA68FA400CC06DC /* CallKit.framework */,
 				87775AB31D9513F9000CAD4F /* WireRequestStrategy.framework */,
 				87023D7A1D76E4E2007B667E /* AFNetworking.framework */,
 				87FEE0CF1D76D65700265A9C /* VIMNetworkingFramework.framework */,
@@ -3415,6 +3475,16 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		8779479D1DA54462009F3271 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				877947A31DA54462009F3271 /* zmessaging.framework */,
+				877947A51DA54462009F3271 /* zmessaging-iOS-Tests.xctest */,
+				877947A71DA54462009F3271 /* zmessaging Test Host.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		878607161D33E3FF00971A19 /* weakify */ = {
 			isa = PBXGroup;
 			children = (
@@ -3452,6 +3522,16 @@
 				8795A5C21D34D09E0024101B /* VoiceIndicatorLayer.m */,
 			);
 			path = Layers;
+			sourceTree = "<group>";
+		};
+		87ADCE3E1DA687B200CC06DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87ADCE441DA687B200CC06DC /* ZMCDataModel.framework */,
+				87ADCE461DA687B200CC06DC /* ZMCDataModelTests.xctest */,
+				87ADCE481DA687B200CC06DC /* ZMDataModelTestHost.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		87BEB03A1D3E44BA00DE9575 /* CameraKeyboard */ = {
@@ -3680,6 +3760,8 @@
 		8F42C52F199244A700288E4D = {
 			isa = PBXGroup;
 			children = (
+				87ADCE3D1DA687B200CC06DC /* ZMCDataModel.xcodeproj */,
+				8779479C1DA54462009F3271 /* zmessaging-cocoa.xcodeproj */,
 				87501FB21D40D6490056C042 /* ComponentsVersions.plist */,
 				87C8D7FB1BA8261C00B0530B /* Entitlements-Dev.entitlements */,
 				87C8D7FC1BA8261C00B0530B /* Entitlements-Prod.entitlements */,
@@ -3993,7 +4075,6 @@
 		8FC85146199245760008B66B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				87F914081D95BBED00A5E2A5 /* CallKitDelegate.swift */,
 				8F9E3B8819D04CAC00FD427A /* SoundEventListener.h */,
 				8F9E3B8919D04CAC00FD427A /* SoundEventListener.m */,
 				8F264B9F19E808A8005FF4BE /* ProximityMonitorManager.h */,
@@ -4673,6 +4754,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				87ADCE4C1DA687B700CC06DC /* PBXTargetDependency */,
+				877947AB1DA546B7009F3271 /* PBXTargetDependency */,
 				1EE85C661B5F96FC008E084B /* PBXTargetDependency */,
 			);
 			name = "Wire-iOS";
@@ -4762,6 +4845,16 @@
 			mainGroup = 8F42C52F199244A700288E4D;
 			productRefGroup = 8F42C539199244A700288E4D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 87ADCE3E1DA687B200CC06DC /* Products */;
+					ProjectRef = 87ADCE3D1DA687B200CC06DC /* ZMCDataModel.xcodeproj */;
+				},
+				{
+					ProductGroup = 8779479D1DA54462009F3271 /* Products */;
+					ProjectRef = 8779479C1DA54462009F3271 /* zmessaging-cocoa.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8F42C537199244A700288E4D /* Wire-iOS */,
@@ -4771,6 +4864,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		877947A31DA54462009F3271 /* zmessaging.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = zmessaging.framework;
+			remoteRef = 877947A21DA54462009F3271 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		877947A51DA54462009F3271 /* zmessaging-iOS-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "zmessaging-iOS-Tests.xctest";
+			remoteRef = 877947A41DA54462009F3271 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		877947A71DA54462009F3271 /* zmessaging Test Host.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "zmessaging Test Host.app";
+			remoteRef = 877947A61DA54462009F3271 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		87ADCE441DA687B200CC06DC /* ZMCDataModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZMCDataModel.framework;
+			remoteRef = 87ADCE431DA687B200CC06DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		87ADCE461DA687B200CC06DC /* ZMCDataModelTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ZMCDataModelTests.xctest;
+			remoteRef = 87ADCE451DA687B200CC06DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		87ADCE481DA687B200CC06DC /* ZMDataModelTestHost.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ZMDataModelTestHost.app;
+			remoteRef = 87ADCE471DA687B200CC06DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1EE85C4E1B5F96FB008E084B /* Resources */ = {
@@ -5046,12 +5184,12 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ZMProtos.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ProtocolBuffers.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Cartography.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/zmessaging.framework",
+				"$(BUILT_PRODUCTS_DIR)/zmessaging.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CocoaLumberjackSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/libPhoneNumber.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PINCache.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ZMCDataModel.framework",
+				"$(BUILT_PRODUCTS_DIR)/ZMCDataModel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZipArchive.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZMCLinkPreview.framework",
@@ -5413,7 +5551,6 @@
 				8F8914151A9F287E0056AB0C /* ConnectionRequestIndicatorLayer.m in Sources */,
 				87BEB03C1D3E44BA00DE9575 /* CameraKeyboardViewController.swift in Sources */,
 				BF8042271BFC741F004CD789 /* NSURL+WireURLs.m in Sources */,
-				87F914091D95BBED00A5E2A5 /* CallKitDelegate.swift in Sources */,
 				871BC2941D34F8F800DF0793 /* UIView+Zeta.m in Sources */,
 				8FC85458199245770008B66B /* ConversationInputBarViewController.m in Sources */,
 				87F61D1A1CD36F0900670794 /* GradientView.swift in Sources */,
@@ -5757,6 +5894,16 @@
 			isa = PBXTargetDependency;
 			target = 1EE85C4F1B5F96FB008E084B /* WireExtensionComponents */;
 			targetProxy = 1EE85C651B5F96FC008E084B /* PBXContainerItemProxy */;
+		};
+		877947AB1DA546B7009F3271 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "zmessaging-ios";
+			targetProxy = 877947AA1DA546B7009F3271 /* PBXContainerItemProxy */;
+		};
+		87ADCE4C1DA687B700CC06DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZMCDataModel;
+			targetProxy = 87ADCE4B1DA687B700CC06DC /* PBXContainerItemProxy */;
 		};
 		BACB88581AF7C48900DDCDB0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
