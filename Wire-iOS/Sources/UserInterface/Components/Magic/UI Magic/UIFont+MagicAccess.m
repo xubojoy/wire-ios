@@ -137,4 +137,24 @@
     return [[self class] fontWithMagicIdentifierFontNameKey:[NSString stringWithFormat:@"%@_font", path] fontSizeKey:[NSString stringWithFormat:@"%@_font_size", path]];
 }
 
+- (UIFont *)dynamic
+{
+    UIFontDescriptor *dynamicDescriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleBody];
+
+    NSMutableDictionary *dynamicAttributes = dynamicDescriptor.fontAttributes.mutableCopy;
+    
+    // We don't want to overwrite any existing font attributes
+    for (NSString *key in dynamicAttributes.allKeys.copy) {
+        if ([self.fontDescriptor.fontAttributes objectForKey:key] != nil) {
+            [dynamicAttributes removeObjectForKey:key];
+        }
+    }
+    
+    UIFontDescriptor *dynamicPlusCurrentAttributes = [self.fontDescriptor fontDescriptorByAddingAttributes:dynamicAttributes];
+    
+    UIFont *fontWithDynamicAttributes = [UIFont fontWithDescriptor:dynamicPlusCurrentAttributes size:self.pointSize];
+    
+    return fontWithDynamicAttributes;
+}
+
 @end

@@ -101,7 +101,7 @@ static inline NSDataDetector *linkDataDetector(void)
         cellParagraphStyle.minimumLineHeight = [WAZUIMagic floatForIdentifier:@"content.line_height"];
     });
     
-    NSDictionary *attributes = @{ NSFontAttributeName : [UIFont fontWithMagicIdentifier:@"style.text.normal.font_spec"],
+    NSDictionary *attributes = @{ NSFontAttributeName : [[UIFont fontWithMagicIdentifier:@"style.text.normal.font_spec"] dynamic],
                                   NSForegroundColorAttributeName : [UIColor wr_colorFromColorScheme:ColorSchemeColorTextForeground],
                                   NSParagraphStyleAttributeName : cellParagraphStyle,
                                   NSBackgroundColorAttributeName : [UIColor wr_colorFromColorScheme:ColorSchemeColorTextBackground] };

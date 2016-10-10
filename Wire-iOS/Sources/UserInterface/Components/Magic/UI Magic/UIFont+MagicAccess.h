@@ -34,4 +34,6 @@
 /// Will use the prefix path append the _font and _size to it, use this two keys to find the font name and the font size in the magic and combine those to UIFont object. In case it doesn't word nil will be returned
 + (UIFont *)fontWithMagicIdentifierPrefixPath:(NSString *)path DEPRECATED_ATTRIBUTE;
 
+- (UIFont *)dynamic;
+
 @end

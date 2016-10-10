@@ -105,6 +105,7 @@
     self.messageTextView.textContainerInset = UIEdgeInsetsZero;
     self.messageTextView.textContainer.lineFragmentPadding = 0;
     self.messageTextView.userInteractionEnabled = YES;
+    self.messageTextView.adjustsFontForContentSizeCategory = YES;
 
     self.linkAttachmentContainer = [[UIView alloc] init];
     self.linkAttachmentContainer.translatesAutoresizingMaskIntoConstraints = NO;
