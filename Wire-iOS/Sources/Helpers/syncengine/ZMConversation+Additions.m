@@ -334,10 +334,10 @@
             __block BOOL joined = YES;
             [[ZMUserSession sharedSession] enqueueChanges:^{
                 if (video) {
-                    joined = [self.voiceChannel joinVideoCall:nil];
+                    joined = [self.voiceChannel joinVideoCall:nil inUserSession:[ZMUserSession sharedSession]];
                     [[Analytics shared] tagMediaActionCompleted:ConversationMediaActionVideoCall inConversation:self];
                 } else {
-                    [self.voiceChannel join];
+                    [self.voiceChannel joinInUserSession:[ZMUserSession sharedSession]];
                     [[Analytics shared] tagMediaActionCompleted:ConversationMediaActionAudioCall inConversation:self];
                 }
 
