@@ -64,6 +64,7 @@ extern NSString * const UserDefaultDisableAVS;
 extern NSString * const UserDefaultDisableUI;
 extern NSString * const UserDefaultDisableHockey;
 extern NSString * const UserDefaultDisableAnalytics;
+extern NSString * const UserDefaultDisableCallKit;
 
 extern NSString * const UserDefaultSendButtonDisabled;
 
@@ -77,6 +78,7 @@ extern NSString * const UserDefaultSendButtonDisabled;
 @property (nonatomic) BOOL enableMarkdown;
 @property (nonatomic) BOOL shouldRegisterForVoIPNotificationsOnly;
 @property (nonatomic) BOOL disableSendButton;
+@property (nonatomic) BOOL disableCallKit;
 
 @property (nonatomic, readonly) BOOL skipFirstTimeUseChecks;
 @property (nonatomic) NSDate *lastPushAlertDate;
