@@ -548,6 +548,9 @@
 		87AC9F561C0749FB00E1ED6F /* TailEditingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AC9F551C0749FB00E1ED6F /* TailEditingTextField.swift */; };
 		87AD89F71CB5179C002C6EC1 /* FileTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD89F61CB5179C002C6EC1 /* FileTransferCell.swift */; };
 		87ADCE4E1DA68FA400CC06DC /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87ADCE4D1DA68FA400CC06DC /* CallKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		87AEDB271DBA619D00010451 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 87AEDB241DBA619D00010451 /* logo.png */; };
+		87AEDB281DBA619D00010451 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87AEDB251DBA619D00010451 /* logo@2x.png */; };
+		87AEDB291DBA619D00010451 /* logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87AEDB261DBA619D00010451 /* logo@3x.png */; };
 		87BEB0361D39018600DE9575 /* FormatterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BEB0351D39018600DE9575 /* FormatterKit.framework */; };
 		87BEB03C1D3E44BA00DE9575 /* CameraKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BEB03B1D3E44BA00DE9575 /* CameraKeyboardViewController.swift */; };
 		87BEB03E1D3E44DE00DE9575 /* CameraCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BEB03D1D3E44DE00DE9575 /* CameraCell.swift */; };
@@ -1690,6 +1693,9 @@
 		87AC9F551C0749FB00E1ED6F /* TailEditingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TailEditingTextField.swift; sourceTree = "<group>"; };
 		87AD89F61CB5179C002C6EC1 /* FileTransferCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTransferCell.swift; sourceTree = "<group>"; };
 		87ADCE4D1DA68FA400CC06DC /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
+		87AEDB241DBA619D00010451 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		87AEDB251DBA619D00010451 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
+		87AEDB261DBA619D00010451 /* logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@3x.png"; sourceTree = "<group>"; };
 		87BEB0351D39018600DE9575 /* FormatterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FormatterKit.framework; path = Carthage/Build/iOS/FormatterKit.framework; sourceTree = "<group>"; };
 		87BEB03B1D3E44BA00DE9575 /* CameraKeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraKeyboardViewController.swift; sourceTree = "<group>"; };
 		87BEB03D1D3E44DE00DE9575 /* CameraCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraCell.swift; sourceTree = "<group>"; };
@@ -3874,6 +3880,9 @@
 		8FC85089199245760008B66B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				87AEDB241DBA619D00010451 /* logo.png */,
+				87AEDB251DBA619D00010451 /* logo@2x.png */,
+				87AEDB261DBA619D00010451 /* logo@3x.png */,
 				16A2024A1B66505B0095BBD1 /* soundcloud.png */,
 				16A2024B1B66505B0095BBD1 /* soundcloud@2x.png */,
 				87D482AE1B8C7DBC004ED174 /* soundcloud@3x.png */,
@@ -4853,10 +4862,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1658D2041D3E742A00249609 /* new_message.caf in Resources */,
+				87AEDB281DBA619D00010451 /* logo@2x.png in Resources */,
 				8773160B1B970A82007BA779 /* list.plist in Resources */,
 				BF732A761D9C14C7003077DB /* emoji_nature.plist in Resources */,
 				16A2024D1B66505C0095BBD1 /* soundcloud@2x.png in Resources */,
 				877316121B970A82007BA779 /* tutorial.plist in Resources */,
+				87AEDB271DBA619D00010451 /* logo.png in Resources */,
 				8FC853D7199245770008B66B /* Settings.bundle in Resources */,
 				877316081B970A82007BA779 /* ipad.plist in Resources */,
 				BF732A781D9C14C7003077DB /* emoji_people.plist in Resources */,
@@ -4875,6 +4886,7 @@
 				875A23121ADEA1A200111C88 /* CountryCodes.plist in Resources */,
 				BF732A731D9C14C7003077DB /* emoji_activities.plist in Resources */,
 				877316071B970A82007BA779 /* ipad_landscape.plist in Resources */,
+				87AEDB291DBA619D00010451 /* logo@3x.png in Resources */,
 				DBF597581A3600FC00269B7F /* icon-no-appstore.xcassets in Resources */,
 				BF732A771D9C14C7003077DB /* emoji_objects.plist in Resources */,
 				87D482AF1B8C7DBC004ED174 /* soundcloud@3x.png in Resources */,
