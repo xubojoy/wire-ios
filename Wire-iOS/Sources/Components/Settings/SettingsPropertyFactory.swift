@@ -82,7 +82,8 @@ class SettingsPropertyFactory {
         SettingsPropertyName.disableAVS                 : UserDefaultDisableAVS,
         SettingsPropertyName.disableHockey              : UserDefaultDisableHockey,
         SettingsPropertyName.disableAnalytics           : UserDefaultDisableAnalytics,
-        SettingsPropertyName.disableSendButton          : UserDefaultSendButtonDisabled
+        SettingsPropertyName.disableSendButton          : UserDefaultSendButtonDisabled,
+        SettingsPropertyName.disableCallKit             : UserDefaultDisableCallKit
     ]
     
     init(userDefaults: UserDefaults, analytics: AnalyticsInterface?, mediaManager: AVSMediaManagerInterface?, userSession: ZMUserSessionInterface, selfUser: SettingsSelfUser, crashlogManager: CrashlogManager? = .none) {
