@@ -108,7 +108,7 @@ NSString * const UserDefaultBrowserOpeningRawValue = @"BrowserOpeningRawValue";
              UserDefaultLastUserLocation,
              UserDefaultPreferredCamera,
              UserDefaultSendButtonDisabled,
-             UserDefaultDisableCallKit
+             UserDefaultDisableCallKit,
              UserDefaultTwitterOpeningRawValue,
              UserDefaultMapsOpeningRawValue,
              UserDefaultBrowserOpeningRawValue
