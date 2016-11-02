@@ -57,6 +57,10 @@ NSString * const UserDefaultSendButtonDisabled = @"SendButtonDisabled";
 NSString * const UserDefaultDisableCallKit = @"UserDefaultDisableCallKit";
 
 
+NSString * const UserDefaultTwitterOpeningRawValue = @"TwitterOpeningRawValue";
+NSString * const UserDefaultMapsOpeningRawValue = @"MapsOpeningRawValue";
+NSString * const UserDefaultBrowserOpeningRawValue = @"BrowserOpeningRawValue";
+
 
 @interface Settings ()
 
@@ -105,6 +109,9 @@ NSString * const UserDefaultDisableCallKit = @"UserDefaultDisableCallKit";
              UserDefaultPreferredCamera,
              UserDefaultSendButtonDisabled,
              UserDefaultDisableCallKit
+             UserDefaultTwitterOpeningRawValue,
+             UserDefaultMapsOpeningRawValue,
+             UserDefaultBrowserOpeningRawValue
              ];
 }
 
@@ -124,7 +131,7 @@ NSString * const UserDefaultDisableCallKit = @"UserDefaultDisableCallKit";
     self = [super init];
     if (self) {
         [self restoreLastUsedIntensityLevel];
-
+        [self loadEnabledLogs];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     return self;
@@ -434,6 +441,36 @@ NSString * const UserDefaultDisableCallKit = @"UserDefaultDisableCallKit";
     [self.defaults synchronize];
 }
 
+- (NSInteger)twitterLinkOpeningOptionRawValue
+{
+    return [self.defaults integerForKey:UserDefaultTwitterOpeningRawValue];
+}
+
+- (void)setTwitterLinkOpeningOptionRawValue:(NSInteger)twitterLinkOpeningOptionRawValue
+{
+    [self.defaults setInteger:twitterLinkOpeningOptionRawValue forKey:UserDefaultTwitterOpeningRawValue];
+}
+
+- (NSInteger)mapsLinkOpeningOptionRawValue
+{
+    return [self.defaults integerForKey:UserDefaultMapsOpeningRawValue];
+}
+
+- (void)setMapsLinkOpeningOptionRawValue:(NSInteger)mapsLinkOpeningOptionRawValue
+{
+    [self.defaults setInteger:mapsLinkOpeningOptionRawValue forKey:UserDefaultMapsOpeningRawValue];
+}
+
+- (NSInteger)browserLinkOpeningOptionRawValue
+{
+    return [self.defaults integerForKey:UserDefaultBrowserOpeningRawValue];
+}
+
+- (void)setBrowserLinkOpeningOptionRawValue:(NSInteger)browserLinkOpeningOptionRawValue
+{
+    [self.defaults setInteger:browserLinkOpeningOptionRawValue forKey:UserDefaultBrowserOpeningRawValue];
+}
+
 @end
 
 @implementation Settings (MediaManager)
@@ -458,3 +495,4 @@ NSString * const UserDefaultDisableCallKit = @"UserDefaultDisableCallKit";
 }
 
 @end
+

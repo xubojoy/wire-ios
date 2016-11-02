@@ -68,6 +68,10 @@ extern NSString * const UserDefaultDisableCallKit;
 
 extern NSString * const UserDefaultSendButtonDisabled;
 
+extern NSString * const UserDefaultTwitterOpeningRawValue;
+extern NSString * const UserDefaultMapsOpeningRawValue;
+extern NSString * const UserDefaultBrowserOpeningRawValue;
+
 /// Model object for locally stored (not in SE or AVS) user app settings
 @interface Settings : NSObject
 
@@ -94,6 +98,10 @@ extern NSString * const UserDefaultSendButtonDisabled;
 @property (nonatomic) NSString *messageSoundName;
 @property (nonatomic) NSString *callSoundName;
 @property (nonatomic) NSString *pingSoundName;
+
+@property (nonatomic) NSInteger twitterLinkOpeningOptionRawValue;
+@property (nonatomic) NSInteger browserLinkOpeningOptionRawValue;
+@property (nonatomic) NSInteger mapsLinkOpeningOptionRawValue;
 
 + (instancetype)sharedSettings;
 
