@@ -18,6 +18,7 @@
 
 
 import Foundation
+import CocoaLumberjackSwift
 
 
 class RecentlyUsedEmojiSection: NSObject, EmojiSection {
@@ -74,20 +75,25 @@ class RecentlyUsedEmojiPeristenceCoordinator {
     }
 
     private static func createDirectoryIfNeeded() {
-        guard var url = directoryUrl else { return }
+        guard var url = directoryURL else { return }
         var values = URLResourceValues()
         values.isExcludedFromBackup = true
-        _ = try? url.setResourceValues(values)
-        _ = try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+        do {
+            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            try url.setResourceValues(values)
+        }
+        catch (let exception) {
+            DDLogError("Error creating \(directoryURL): \(exception)")
+        }
     }
 
-    private static var directoryUrl: URL? = {
+    private static var directoryURL: URL? = {
         let url = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         return url?.appendingPathComponent("emoji")
     }()
 
     private static var url: URL? = {
-        return directoryUrl?.appendingPathComponent("recently_used.plist")
+        return directoryURL?.appendingPathComponent("recently_used.plist")
     }()
 
 }
