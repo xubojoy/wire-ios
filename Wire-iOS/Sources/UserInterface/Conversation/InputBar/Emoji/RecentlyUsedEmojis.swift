@@ -76,10 +76,13 @@ class RecentlyUsedEmojiPeristenceCoordinator {
 
     private static func createDirectoryIfNeeded() {
         guard var url = directoryURL else { return }
-        var values = URLResourceValues()
-        values.isExcludedFromBackup = true
+        
         do {
-            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            if !FileManager.default.fileExists(atPath: url.path) {
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            }
+            var values = URLResourceValues()
+            values.isExcludedFromBackup = true
             try url.setResourceValues(values)
         }
         catch (let exception) {
